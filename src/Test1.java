@@ -7,6 +7,12 @@ public class Test1 {
 		System.out.println("Hi Alok");
 		System.out.println("Hi Rajesh");
 		System.out.println("Hi Rakesh");
+		
+		//------------------
+		System.out.println("Hi Rahul");
+		System.out.println("Hi Alok");
+		System.out.println("Hi Rajesh");
+		System.out.println("Hi Rakesh");
 	}
 
 }
