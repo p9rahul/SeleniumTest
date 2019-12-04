@@ -1,0 +1,144 @@
+
+*************************************************
+*************************************************
+7 - Getting started with JOBS
+
+1. How to create a basic JOB in Jenkins 
+
+2. Basic job configurations
+1)Genaral section -
+2)Source Code Management Section
+3) Build Triggers section - Build periodically -> corn pattern-* * * * * -means every minute (MINUTE HOUR DOM MONTH DOW)
+4) Build Environment
+5) Build Section-
+6)Post-build Actions sections
+
+3. How to run the Job remotely - Build Triggers -> Trigger builds remotely -> copy /job/DevOpsFinalAssignment/build?token=TOKEN_NAME open in new 
+	URL by this way execution will start
+	
+4. How to chain Job Execution - 
+Job1
+Job2 -> 
+Job3
+
+Step 1-go to Job2 -> configure -> Build Triggers -> Build after other projects are built -> pass here Job1
+Step 2- Post build actions -> Build other projects -> Pass here Job3
+Step 3 - Save and execute Job1
+
+
+
+*************************************************
+*************************************************
+8 - Jenkins integration with GIT (SCM)
+———————————
+1. Create a java program and run it through command line
+2. Create a Jenkins job to run the java program
+3. Add this program/project to Git
+4. Jenkins - add git plugin
+5. Configure Jenkins job to trigger the execution when a change is pushed to GitHub
+__________________________________________________________
+
+Step 1 : Create a java program
+
+Step 2 : Compile from command line from local 
+   javac Hello.java 
+   java Hello
+   
+      ---------Set java Environment variable in local-----------
+   System variable - JAVA_HOME - C:\Program Files\Java\jdk1.8.0_231
+   User variable - path - %MAVEN_HOME%/bin;%JAVA_HOME%\bin;
+   
+Step 3 : Create a Jenkins job to run this program
+Go to Build section -> Execute windows batch commands
+Pass commands - when java program is in local
+-> cd path of java program like - 
+-> javac Hello.java 
+   java Hello
+   
+Step 4 : Add the project to Git and GitHub
+- install git plugin in jenkins
+- Source Code Management -> Git -> https://github.com/p9rahul/JavaJenkinsGit.git
+-Build section -> Execute windows batch commands
+javac Hello.java 
+java Hello
+
+-When some 
+#Build Triggers section -> Poll SCM
+Schedule : * * * * *  -it will check the git repository every minute for any changes
+--------------------------------------------------
+Error :- 'javac' is not recognized as an internal or external command,
+Try this: 
+-install "JDK Parameter" Plugin 
+-Restart
+-Manage Jenkins -> Global Tool Configuration -> JDK 
+-JAVA_HOME - C:\Program Files\Java\jdk1.8.0_231\bin
+-Now, you should see JDK dropdown in "job name" -> Configure in Jenkins web ui. It will list all JDKs available in Jenkins configuration.
+--------------------------------------------------
+Error: Could not find or load main class
+cd D:\Rahul\Jenkins\JavaJenkinsGit
+javac D:\Rahul\Jenkins\JavaJenkinsGit\Hello.java 
+java -cp D:\Rahul\Jenkins\JavaJenkinsGit Hello
+--------------------------------------------------
+
+
+*************************************************
+*************************************************
+9 - How to use CATLIGHT (Jenkins Build Monitor)1
+
+https://catlight.io/downloads 
+
+-CatLight status notifier tool for jenkins it shows build status notifications in tray.
+-It will monitor all jobs in jenkins and notify any changes
+-CatLight replaces the large volume of emails that no-one reads about test or build failures. Since we have started using it,
+ many of our perennially failing builds have been fixed and failed builds no longer sit around failing for days on end.
+
+*************************************************
+*************************************************
+10 - What is Automated Deployment ?
+
+Main stages in Continuous delivery and deployment pipeline
+Build - Deploy - Test - Release -When Build is successfull only then Deploy job will be triggers
+1. BUILD
+2. DEPLOY
+3. TEST
+4. RELEASE
+
+Lets see ...
+A real world Project SetUp
+Automated Deployment is the process of Automating the deployment process in a Continuous Delivery system
+
+*************************************************
+*************************************************
+11 - How to do Automated Deployment (Step by Step)1
+
+Step 1- Start jenkins
+Step 2- Install plugin (Deploy Plugin) -This plugin takes war/ear file and deploys that on a running remote application server at the end of the build.
+List of currently supported container-
+1) Tomcat
+2) Jboss
+3) Glassfish
+4) Websphere
+5) Web Logic
+
+
+Step 3 -Create a build job in jenkins that will create a war/ear file
+Step 4- Add post build actions Deploy war/ear file to container
+Step 5 -in tomcat-users.xml add user for deployment
+Step 6- Run and validate
+*************************************************
+*************************************************
+12 - Notifications - How to send Email from Jenkins
+
+Step 1- Manage Jenkins -> Configure system
+Step 2- Give SMTP server ,PORT
+Step 3- Set email notificaton at JOb level
+
+*************************************************
+*************************************************
+13 - What is Pipeline in Jenkins (DevOps)
+
+Pipeline - is a workflow with group of event or jobs that are intergrated with each other in a sequence. Every job is depedent on another.
+
+Build - Deploy - Test - Release - continous delivery pipeline
+
+14 - How to setup DELIVERY PIPELINE in Jenkins (Step by Step)
