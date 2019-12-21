@@ -1,0 +1,16 @@
+1. File io package and read csv file
+public class Test {
+
+	public static void main(String[] args) throws IOException {
+
+		FileReader fr =new FileReader("C:\\Users\\Rahul\\eclipse-workspace\\Interview\\src\\Files\\Test.csv");
+		BufferedReader br =new BufferedReader(fr);
+		String line="";
+		
+		while((line =br.readLine()) != null) {
+			String[] strArr= line.split(",");
+			System.out.println(strArr[3]);  // java.io. package
+		}
+	}
+
+}
